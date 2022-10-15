@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 
-
-
 export default function SmallSummary(props) {
     console.log(props);
     const { title, text } = props;
@@ -14,7 +12,7 @@ export default function SmallSummary(props) {
                 <h5>{title}</h5>
             </div>
             <hr className='hr2' />
-            <p className='bottomAreaOfSummary'>{text.substring(0, 300)}</p>
+            <p className='bottomAreaOfSummary' style={{fontSize: '20px'}}>{text.substring(0, 2000)}</p>
         </div>
     );
 }

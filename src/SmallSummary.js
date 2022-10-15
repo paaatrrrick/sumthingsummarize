@@ -12,10 +12,10 @@ export default function SmallSummary(props) {
         <div className='w40'>
             <div className="topAreaOfSummary">
                 <h5>{title}</h5>
-                <a href="https://www.patrickrfoster.com" className='viewSite'>View Site</a>
+                <a href={url} className='viewSite'>View Site</a>
             </div>
             <hr className='hr2' />
-            <p className='bottomAreaOfSummary'>{text.substring(0, 300)}</p>
+            <p className='bottomAreaOfSummary'>{text.substring(0, 800)}</p>
         </div>
     );
 }
