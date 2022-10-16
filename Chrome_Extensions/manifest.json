@@ -1,0 +1,20 @@
+{
+    "short_name": "StuTron",
+    "name": "Study Tron 9000",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "background": {
+      "service_worker": "background.js"
+    },
+    "permissions": [
+      "storage",
+      "notifications",
+      "contextMenus",
+      "tabs"
+    ],
+    "icons": {
+        "32": "icon32.png",
+        "128": "icon128.png"
+    }
+  }
+  
