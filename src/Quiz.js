@@ -9,25 +9,36 @@ export default function Quiz() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [showingResults, setShowingfResults] = useState(false);
-    const [answers, setAnswers] = useState([]);
     const getData = async () => {
+        const poop = await fetch("http://127.0.0.1:5000/quiz").then(res => res.json());
+        console.log(poop);
         setLoading(false);
-        setAnswers(Array(dummyData.length).fill(-1));
-        console.log(answers);
+        const newArr = [];
+        for (let i = 0; i < poop.length; i++) {
+            const subArr = [];
+            for (let j = 0; j < 5; j++) {
+                try {
+                    subArr.push(poop[i][j]);
+                } catch(e) {
+                    subArr.push('None of the above');
+                }
+            }
+            newArr.push(subArr)
+        }
+        setData(newArr);
     }
     useEffect(() => {
         getData();
         console.log('her123');
-        setData(dummyData);
     }, []);
     const submitQuiz = () => {
-        document.querySelectorAll('input[type=radio]').forEach((radio) => {
-            if (radio.checked) {
-                console.log(radio.value);
-            }
-        }
-        )
         setShowingfResults(true);
+    }
+
+    const linkClicked = () => {
+        console.log('here123');
+        setShowingfResults(false);
+        setData(null);
     }
 
     return (
@@ -35,7 +46,7 @@ export default function Quiz() {
             <div className="banner">
                 <img src={require("./logo.png")} alt="logo" className='logo' />
             </div>
-            <Link className='myButton' to="/">Go Back</Link>
+            <Link onClick={() => {linkClicked();}} className='myButton' to="/">Go Back</Link>
             {!showingResults ?
                 <div className='questionsContainer'>
                     <h3 style={{ marginLeft: '0px', marginTop: '-10px', marginBottom: '10px' }}>Practice Quiz</h3>
@@ -50,11 +61,11 @@ export default function Quiz() {
                         </div>)}
                         <hr style={{ width: '100%' }} />
                     </div>)}
-                    <button className='submitButton' onClick={() => { submitQuiz(); }}>Sumbit</button>
+                    <button className='submitButton' onClick={() => { submitQuiz(); }}>Submit</button>
                 </div>
                 :
                 <div className='resultsDiv'>
-                    <h3 className='centeredH3'>Your Score Is Great</h3>
+                    <h3 className='centeredH3'>Your Score Is 100%. Congrats!</h3>
                     <Link className='myButtonNormalPosition' to="/">Go Back</Link>
                 </div>
             }

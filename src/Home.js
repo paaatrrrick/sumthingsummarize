@@ -16,18 +16,17 @@ export default function Home() {
 
     const requests = async () => {
         console.log('this called');
-        // const d1 = await fetch("http://127.0.0.1:5000/get_summaries").then(res => res.json());
-        // const bd = await fetch("http://127.0.0.1:5000/total_summary").then(res => res.json());
+        const d1 = await fetch("http://127.0.0.1:5000/get_summaries").then(res => res.json());
+        const bd = await fetch("http://127.0.0.1:5000/total_summary").then(res => res.json());
+        setData(d1);
+        setBigData(bd);
         setLoading(false);
-        // setData(d1);
-        // setBigData(bd);
     }
 
     const buttonClicked = async () => {
-        console.log('here here')
-        // setData(null);
-        // setBigData(null);
-        // const response = await fetch("http://127.0.0.1:5000/clear_summaries", {method:"POST"}).then(res => res.json());
+        setData(null);
+        setBigData(null);
+        const response = await fetch("http://127.0.0.1:5000/clear_summaries", {method:"POST"}).then(res => res.json());
     }
 
     useEffect(() => {
